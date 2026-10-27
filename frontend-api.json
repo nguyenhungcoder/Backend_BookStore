@@ -1,0 +1,335 @@
+{
+  "baseUrl": "http://localhost:8080",
+  "auth": {
+    "register": {
+      "method": "POST",
+      "path": "/api/auth/register",
+      "description": "Đăng ký tài khoản mới"
+    },
+    "login": {
+      "method": "POST",
+      "path": "/api/auth/login",
+      "description": "Đăng nhập và nhận token"
+    }
+  },
+  "books": {
+    "list": {
+      "method": "GET",
+      "path": "/api/books",
+      "description": "Lấy danh sách sách"
+    },
+    "detail": {
+      "method": "GET",
+      "path": "/api/books/{id}",
+      "description": "Lấy chi tiết sách"
+    },
+    "create": {
+      "method": "POST",
+      "path": "/api/books",
+      "description": "Tạo sách mới (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "update": {
+      "method": "PUT",
+      "path": "/api/books/{id}",
+      "description": "Cập nhật sách (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "uploadCover": {
+      "method": "POST",
+      "path": "/api/books/{id}/upload-cover",
+      "description": "Upload ảnh bìa sách (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "delete": {
+      "method": "DELETE",
+      "path": "/api/books/{id}",
+      "description": "Xóa sách (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    }
+  },
+  "cart": {
+    "add": {
+      "method": "POST",
+      "path": "/api/cart",
+      "description": "Thêm sản phẩm vào giỏ",
+      "authRequired": true
+    },
+    "update": {
+      "method": "PUT",
+      "path": "/api/cart/{itemId}",
+      "description": "Cập nhật số lượng",
+      "authRequired": true
+    },
+    "remove": {
+      "method": "DELETE",
+      "path": "/api/cart/{itemId}",
+      "description": "Xóa item khỏi giỏ",
+      "authRequired": true
+    }
+  },
+  "addresses": {
+    "list": {
+      "method": "GET",
+      "path": "/api/addresses",
+      "description": "Lấy danh sách địa chỉ",
+      "authRequired": true
+    },
+    "create": {
+      "method": "POST",
+      "path": "/api/addresses",
+      "description": "Thêm địa chỉ",
+      "authRequired": true
+    },
+    "update": {
+      "method": "PUT",
+      "path": "/api/addresses/{addressId}",
+      "description": "Cập nhật địa chỉ",
+      "authRequired": true
+    },
+    "delete": {
+      "method": "DELETE",
+      "path": "/api/addresses/{addressId}",
+      "description": "Xóa địa chỉ",
+      "authRequired": true
+    }
+  },
+  "orders": {
+    "create": {
+      "method": "POST",
+      "path": "/api/orders",
+      "description": "Tạo đơn hàng",
+      "authRequired": true
+    },
+    "adminList": {
+      "method": "GET",
+      "path": "/api/orders",
+      "description": "Danh sách đơn hàng (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "updateStatus": {
+      "method": "PUT",
+      "path": "/api/orders/{id}/status",
+      "description": "Cập nhật trạng thái đơn hàng (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    }
+  },
+  "payments": {
+    "createUrl": {
+      "method": "POST",
+      "path": "/api/payments/create-url",
+      "description": "Tạo link thanh toán",
+      "authRequired": true
+    },
+    "vnpayReturn": {
+      "method": "GET",
+      "path": "/api/payments/vnpay-return",
+      "description": "Callback thanh toán"
+    }
+  },
+  "reviews": {
+    "create": {
+      "method": "POST",
+      "path": "/api/reviews",
+      "description": "Tạo đánh giá",
+      "authRequired": true
+    },
+    "list": {
+      "method": "GET",
+      "path": "/api/reviews",
+      "description": "Lấy danh sách đánh giá"
+    },
+    "updateStatus": {
+      "method": "PUT",
+      "path": "/api/reviews/{id}/status",
+      "description": "Duyệt/tắt đánh giá (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    }
+  },
+  "contacts": {
+    "create": {
+      "method": "POST",
+      "path": "/api/contacts",
+      "description": "Gửi liên hệ"
+    },
+    "adminList": {
+      "method": "GET",
+      "path": "/api/contacts",
+      "description": "Xem danh sách liên hệ (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "updateStatus": {
+      "method": "PUT",
+      "path": "/api/contacts/{id}/status",
+      "description": "Cập nhật trạng thái liên hệ (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    }
+  },
+  "stats": {
+    "summary": {
+      "method": "GET",
+      "path": "/api/stats/summary",
+      "description": "Thống kê tổng quan",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "revenueByMonth": {
+      "method": "GET",
+      "path": "/api/stats/revenue-by-month",
+      "description": "Doanh thu theo tháng",
+      "authRequired": true,
+      "role": "ADMIN"
+    }
+  },
+  "users": {
+    "updateProfile": {
+      "method": "PUT",
+      "path": "/api/users/profile",
+      "description": "Cập nhật profile người dùng và lưu danh sách địa chỉ theo chuẩn mới",
+      "authRequired": true,
+      "requestBody": {
+        "fullName": "string",
+        "email": "string",
+        "phone": "string",
+        "addresses": [
+          {
+            "receiverName": "string",
+            "phone": "string",
+            "province": "string",
+            "district": "string",
+            "ward": "string",
+            "detailAddress": "string",
+            "isDefault": true
+          }
+        ]
+      }
+    },
+    "adminList": {
+      "method": "GET",
+      "path": "/api/users",
+      "description": "Danh sách người dùng (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "updateStatus": {
+      "method": "PUT",
+      "path": "/api/users/{id}/status",
+      "description": "Cập nhật trạng thái user (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "uploadAvatar": {
+      "method": "POST",
+      "path": "/api/users/{id}/upload-avatar",
+      "description": "Upload avatar (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    }
+  },
+  "vouchers": {
+    "list": {
+      "method": "GET",
+      "path": "/api/vouchers",
+      "description": "Danh sách voucher công khai"
+    },
+    "adminList": {
+      "method": "GET",
+      "path": "/api/vouchers/admin",
+      "description": "Danh sách voucher cho admin",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "create": {
+      "method": "POST",
+      "path": "/api/vouchers",
+      "description": "Tạo voucher (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "update": {
+      "method": "PUT",
+      "path": "/api/vouchers/{id}",
+      "description": "Cập nhật voucher (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "delete": {
+      "method": "DELETE",
+      "path": "/api/vouchers/{id}",
+      "description": "Xóa voucher (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    }
+  },
+  "wishlists": {
+    "add": {
+      "method": "POST",
+      "path": "/api/wishlists",
+      "description": "Thêm vào wishlist",
+      "authRequired": true
+    },
+    "remove": {
+      "method": "DELETE",
+      "path": "/api/wishlists",
+      "description": "Bỏ khỏi wishlist",
+      "authRequired": true
+    },
+    "list": {
+      "method": "GET",
+      "path": "/api/wishlists",
+      "description": "Lấy danh sách wishlist",
+      "authRequired": true
+    }
+  },
+  "banners": {
+    "list": {
+      "method": "GET",
+      "path": "/api/banners",
+      "description": "Lấy banner"
+    },
+    "create": {
+      "method": "POST",
+      "path": "/api/banners",
+      "description": "Tạo banner (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "upload": {
+      "method": "POST",
+      "path": "/api/banners/upload",
+      "description": "Upload banner (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "update": {
+      "method": "PUT",
+      "path": "/api/banners/{id}",
+      "description": "Cập nhật banner (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "updateStatus": {
+      "method": "PUT",
+      "path": "/api/banners/{id}/status",
+      "description": "Đổi trạng thái banner (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    },
+    "delete": {
+      "method": "DELETE",
+      "path": "/api/banners/{id}",
+      "description": "Xóa banner (admin)",
+      "authRequired": true,
+      "role": "ADMIN"
+    }
+  }
+}

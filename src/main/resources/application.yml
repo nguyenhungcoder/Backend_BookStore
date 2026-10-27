@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: bookstore
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/bookstore_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=Asia/Bangkok&allowPublicKeyRetrieval=true
+    username: root
+    password: hung1123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
+
+file:
+  upload-dir: uploads
+
+app:
+  jwt:
+    secret: bookstore-development-secret-key-change-me-before-production
+    expiration-ms: 86400000
+  vnpay:
+    pay-url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+    return-url: http://localhost:8080/api/payments/vnpay/return
+    notify-url: http://localhost:8080/api/payments/vnpay/ipn
+    tmn-code: 9FQ4A2LD
+    hash-secret: KUMWUIVFWSEUMSXNIFICDSSYPYCAAJUR
+    version: 2.1.0
+    command: pay
+    order-type: other
+  cors:
+    allowed-origins:
+      - http://localhost:3000
+      - http://localhost:3001
+      - http://localhost:5173
+      - http://localhost:5174

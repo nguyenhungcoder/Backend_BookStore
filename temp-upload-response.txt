@@ -1,0 +1,1 @@
+{"bannerId":11,"title":"Uploaded Banner","image":"uploads/banners/46447a1f-442f-4d16-9f6e-6f6af340033b.png","link":"","status":"ACTIVE","createdAt":"2026-07-28T00:00:52.3168295"}
